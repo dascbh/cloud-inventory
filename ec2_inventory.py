@@ -10,6 +10,7 @@ from html_builder import create_html
 aws_access_key_id = os.environ['AWS_ACCESS_KEY_ID']
 aws_secret_access_key = os.environ['AWS_SECRET_ACCESS_KEY']
 env_tags_to_seek = os.environ['ENV_TAGS_TO_SEEK']
+account_name = os.environ['ACCOUNT_NAME']
 
 ec2 = boto3.client('ec2', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 response = ec2.describe_instances()
@@ -25,6 +26,8 @@ def create_inst_obj(inst_id, inst_status, inst_type, inst_tags):
 	inst_obj["Monthly Cost"] = "U$ 0"
 	inst_obj["Instance Type"] = inst_type
 	inst_obj["Reserved"] = "No"
+	inst_obj["Actions"] = "Start | Stop"
+	inst_obj["Account"] = account_name
 
 	tags = {}
 	temp_values = []
