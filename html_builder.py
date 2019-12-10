@@ -30,14 +30,19 @@ data = {
 }
 
 def create_html(data):
-	dyntable = json2html.convert(json = data, table_attributes="id=\"info-table\" class=\"table table-condensed table-bordered table-hover\"")
+	dyntable = json2html.convert(json = data, table_attributes="id=\"info-table\" class=\"table table-bordered\"")
 
-	strTable = '<html><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">%s</html>' % (dyntable)
+	# Read the template file
+	with open('template.html', 'r') as file:
+		template = file.read()
 
-	hs = open("index.html", 'w')
-	hs.write(strTable)
-	 
-	# print strTable
+	index = template.replace('*TABLE*', dyntable)
+
+	# Write the new file
+	with open('index.html', 'w') as file:
+		file.write(index)
+
+	return
 
 def main(data):
 	create_html(data)

@@ -20,14 +20,14 @@ instances = []
 
 def create_inst_obj(inst_id, inst_status, inst_type, inst_tags):
 	inst_obj = {}
-	inst_obj["Id"] = inst_id
-	inst_obj["Owner"] = "-"
+	inst_obj["Instance Id"] = inst_id
+	# inst_obj["Owner"] = "-"
 	inst_obj["Status"] = inst_status
-	inst_obj["Monthly Cost"] = "U$ 0"
+	# inst_obj["Monthly Cost"] = "U$ 0"
 	inst_obj["Instance Type"] = inst_type
-	inst_obj["Reserved"] = "No"
-	inst_obj["Actions"] = "Start | Stop"
-	inst_obj["Account"] = account_name
+	# inst_obj["Reserved"] = "No"
+	# inst_obj["Actions"] = "Start | Stop"
+	# inst_obj["Account"] = account_name
 
 	tags = {}
 	temp_values = []
