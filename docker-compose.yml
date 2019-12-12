@@ -1,0 +1,34 @@
+version: '3'
+services:
+    ec2_collector:
+        container_name: ec2_collector
+        build: .
+        environment:
+          - AWS_ACCESS_KEY_ID=AKIASRAE3LIPUGRYGYM4
+          - AWS_SECRET_ACCESS_KEY=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
+          - AWS_DEFAULT_REGION=us-west-2
+        volumes:
+          - "EC2data:/usr/src/app"
+        links:
+          - mongodb
+        depends_on:
+          - mongodb
+    web:
+        container_name: nginx
+        image: nginx:latest
+        ports:
+          - "8088:80"
+        volumes:
+          - "EC2data:/usr/share/nginx/html:ro"
+    mongodb:
+        container_name: "mongodb"
+        image: mongo:4
+        restart: always
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=cloud
+          - MONGO_INITDB_ROOT_PASSWORD=1nv3ntory
+        ports:
+          - "27017:27017"
+        command: --auth
+volumes:
+    EC2data:

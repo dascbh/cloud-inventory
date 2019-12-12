@@ -11,5 +11,6 @@ COPY . .
 
 RUN pip install boto3
 RUN pip install json2html
+RUN pip install pymongo
 
 CMD [ "python", "./ec2_inventory.py" ]

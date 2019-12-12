@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Cloud Inventory</title>
+	<meta charset="utf-8">
+	<link href="https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<br>
+	<input class="form-control" id="myInput" type="text" placeholder="Search..">
+	<br>
+	<table id="info-table" class="table table-bordered"><thead><tr><th>Status</th><th>Name</th><th>Tags</th><th>Instance Type</th><th>Instance Id</th><th>_id</th></tr></thead><tbody><tr><td>stopped</td><td>ALL - Collectors</td><td><table id="info-table" class="table table-bordered"><tr><th>Gerencia</th><td>Daniel Abraao</td></tr><tr><th>App</th><td>Momentum</td></tr><tr><th>Centro de Custo</th><td>DIRETORIA DE TI</td></tr><tr><th>Ambiente</th><td>PRJ</td></tr></table></td><td>t2.medium</td><td>i-0a5ebc3e9a2ba20bf</td><td>5df1a086866725259f420733</td></tr><tr><td>running</td><td>ALL - Bitcompre</td><td><table id="info-table" class="table table-bordered"><tr><th>Gerencia</th><td>Daniel Abraao</td></tr><tr><th>App</th><td>Bitcompre</td></tr><tr><th>Centro de Custo</th><td>DIRETORIA DE TI</td></tr><tr><th>Ambiente</th><td>PRJ</td></tr></table></td><td>t2.medium</td><td>i-0234dda6bd62c2f82</td><td>5df1a086866725259f420735</td></tr><tr><td>stopped</td><td>ALL - Momentum [Stocks&amp;FIIs]</td><td><table id="info-table" class="table table-bordered"><tr><th>Gerencia</th><td>Daniel Abraao</td></tr><tr><th>App</th><td>Momentum</td></tr><tr><th>Centro de Custo</th><td>DIRETORAI DE TI</td></tr><tr><th>Ambiente</th><td>DEV</td></tr></table></td><td>t2.micro</td><td>i-07eb4f4d0accfd696</td><td>5df1a087866725259f420737</td></tr></tbody></table>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<script src="https://mottie.github.io/tablesorter/dist/js/jquery.tablesorter.min.js"></script>
+<script src="https://getbootstrap.com/docs/3.4/dist/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#info-table tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+<script>
+$(function() {
+  $("#info-table").tablesorter();
+});
+</script>
+
+</html>
+</body>

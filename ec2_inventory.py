@@ -4,6 +4,7 @@ import json
 import os
 import sys
 import boto3
+import pymongo
 
 from html_builder import create_html
 
@@ -15,9 +16,16 @@ env_tags_to_seek = os.environ['ENV_TAGS_TO_SEEK']
 
 ec2 = boto3.client('ec2', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 response = ec2.describe_instances()
-# print(response)
 
 instances = []
+
+def mongodb_insert(data):
+    connection = pymongo.MongoClient("mongodb://cloud:1nv3ntory@localhost")
+    database = connection.inventories
+    collection = database.ec2instances
+    collection.insert(data)
+    connection.close()
+    return
 
 def create_inst_obj(inst_id, inst_status, inst_type, inst_tags):
 	inst_obj = {}
@@ -59,6 +67,7 @@ def main():
 
 		if obj:
 			instances.append(obj)
+			mongodb_insert(obj)
 		else:
 			pass
 
