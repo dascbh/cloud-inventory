@@ -4,8 +4,8 @@ services:
         container_name: ec2_collector
         build: .
         environment:
-          - AWS_ACCESS_KEY_ID=AKIASRAE3LIPUGRYGYM4
-          - AWS_SECRET_ACCESS_KEY=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
+          - AWS_ACCESS_KEY_ID=$AWS_KEY
+          - AWS_SECRET_ACCESS_KEY=$AWS_SECRET
           - AWS_DEFAULT_REGION=us-west-2
         volumes:
           - "EC2data:/usr/src/app"
@@ -25,8 +25,8 @@ services:
         image: mongo:4
         restart: always
         environment:
-          - MONGO_INITDB_ROOT_USERNAME=cloud
-          - MONGO_INITDB_ROOT_PASSWORD=1nv3ntory
+          - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
+          - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASS
         ports:
           - "27017:27017"
         command: --auth
